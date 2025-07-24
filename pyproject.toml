@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-git-cli"
+version = "0.1.0"
+description = "An AI-powered Git command line tool using Gemini for commit messages and natural language instructions."
+authors = [
+  { name = "Sadeed Bin Sadik", email = "you@example.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.8"
+
+dependencies = [
+  "google-generativeai",
+  "python-dotenv",
+  "requests",
+  "gitpython"
+]
+
+[project.scripts]
+ai-git = "ai_git.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ai_git*"]
