@@ -19,5 +19,5 @@ An AI-powered Git command-line tool using **Gemini (Google's LLM)** and GitHub A
 ### 1. Clone the project
 
 ```bash
-git clone https://github.com/Sadeed-BS/ai_git_cli.git
+git clone https://github.com/Sadeed-BS/ai_git_tool.git
 cd ai-git-cli
