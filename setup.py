@@ -15,9 +15,9 @@ setup(
     },
     author='Sadeed Bin Sadik',
     description='AI-powered Git CLI using LangGraph and GitHub API',
-    long_description=open('README.md').read(),
+    long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/Sadeed-BS/ai-git-cli',
+    url='https://github.com/Sadeed-BS/ai_git_tool',
     classifiers=[
         'Programming Language :: Python :: 3',
     ],

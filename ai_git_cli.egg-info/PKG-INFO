@@ -2,7 +2,7 @@ Metadata-Version: 2.4
 Name: ai-git-cli
 Version: 0.1.0
 Summary: AI-powered Git CLI using LangGraph and GitHub API
-Home-page: https://github.com/Sadeed-BS/ai-git-cli
+Home-page: https://github.com/Sadeed-BS/ai_git_tool
 Author: Sadeed Bin Sadik
 Classifier: Programming Language :: Python :: 3
 Requires-Python: >=3.7
@@ -20,12 +20,26 @@ Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
 
-# AI Git CLI
+# 🤖 AI Git CLI
 
-A command-line tool to automate Git tasks using AI and GitHub.
+An AI-powered Git command-line tool using **Gemini (Google's LLM)** and GitHub API to automate and supercharge your developer workflow.
 
-## Commands
+---
 
-- `ai-git clone <url>`: Clone a repo
-- `ai-git analyze <path>`: Analyze repo files
-- `ai-git issue <repo> <title> <body>`: Create GitHub issue
+## ✨ Features
+
+- 🔁 `clone <url>` – Clone any GitHub repo
+- 📊 `analyze <path>` – Analyze codebase (LangGraph-compatible)
+- 🧠 `commit` – Auto-generate meaningful Git commit messages using Gemini
+- 🐞 `issue` – Create GitHub issues directly from CLI
+- 🔀 `pr` – Open Pull Requests with optional Gemini-generated title/description
+
+---
+
+## 📦 Installation
+
+### 1. Clone the project
+
+```bash
+git clone https://github.com/Sadeed-BS/ai_git_tool.git
+cd ai-git-cli

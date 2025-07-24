@@ -1,4 +1,6 @@
 import argparse
+import sys
+import subprocess
 from ai_git.core.git_ops import clone_repo, analyze_repo, ai_commit
 from ai_git.utils.github_api import create_issue, create_pull_request
 
@@ -26,7 +28,7 @@ def main():
     pr.add_argument('--base', required=True, help='Base branch (default: main)')
     pr.add_argument('--ai', action='store_true', help='Use AI to generate PR title/description')
 
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
 
     if args.command == 'clone':
         clone_repo(args.url)
@@ -38,5 +40,14 @@ def main():
         ai_commit(args.repo)
     elif args.command == 'pr':
         create_pull_request(args.repo, args.branch, args.base, use_ai=args.ai)
+    elif len(sys.argv) > 1:
+        # Forward unknown commands to git
+        git_args = sys.argv[1:]
+        try:
+            result = subprocess.run(['git'] + git_args, check=False)
+            sys.exit(result.returncode)
+        except FileNotFoundError:
+            print("Git is not installed or not found in PATH.")
+            sys.exit(1)
     else:
         parser.print_help()
