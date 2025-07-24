@@ -20,26 +20,52 @@ Dynamic: requires-dist
 Dynamic: requires-python
 Dynamic: summary
 
-# 🤖 AI Git CLI
+# ai-git-cli
 
-An AI-powered Git command-line tool using **Gemini (Google's LLM)** and GitHub API to automate and supercharge your developer workflow.
+**ai-git-cli** is an AI-powered command-line tool that enhances your Git workflow with features like AI-generated commit messages, codebase analysis, and seamless GitHub integration. It also supports all standard Git commands.
 
----
+## Features
 
-## ✨ Features
+- **AI-powered commit messages**: Generate meaningful commit messages using Gemini.
+- **Codebase analysis**: Analyze your repository with LangGraph-compatible tools.
+- **GitHub integration**: Create issues and pull requests directly from the CLI.
+- **Full Git support**: Use any standard Git command via `ai-git <command>`.
+- **Easy to use**: Drop-in replacement for the `git` command.
 
-- 🔁 `clone <url>` – Clone any GitHub repo
-- 📊 `analyze <path>` – Analyze codebase (LangGraph-compatible)
-- 🧠 `commit` – Auto-generate meaningful Git commit messages using Gemini
-- 🐞 `issue` – Create GitHub issues directly from CLI
-- 🔀 `pr` – Open Pull Requests with optional Gemini-generated title/description
-
----
-
-## 📦 Installation
-
-### 1. Clone the project
+## Installation
 
 ```bash
-git clone https://github.com/Sadeed-BS/ai_git_tool.git
-cd ai-git-cli
+pip install .
+```
+
+## Usage
+
+All standard Git commands are supported:
+
+```bash
+ai-git status
+ai-git log
+ai-git checkout main
+```
+
+AI-powered features:
+
+```bash
+ai-git commit --repo .
+ai-git analyze <path>
+ai-git issue <repo> <title> <body>
+ai-git pr --repo <user/repo> --branch <feature-branch> --base main --ai
+```
+
+## Requirements
+
+- Python 3.7+
+- Git installed and available in your PATH
+
+## License
+
+MIT
+
+## Author
+
+[Sadeed Bin Sadik](https://github.com/Sadeed-BS)

@@ -1,6 +1,9 @@
 import argparse
+import sys
+import subprocess
 from ai_git.core.git_ops import clone_repo, analyze_repo, ai_commit
 from ai_git.utils.github_api import create_issue, create_pull_request
+from ai_git.commands import natural
 
 def main():
     parser = argparse.ArgumentParser(description="AI Git Assistant CLI")
@@ -11,6 +14,10 @@ def main():
 
     analyze = subparsers.add_parser('analyze', help='Analyze a repo')
     analyze.add_argument('path', help='Local repo path')
+
+    parser_natural = subparsers.add_parser("natural", help="Run a natural language git command")
+    parser_natural.add_argument("prompt", nargs=argparse.REMAINDER)
+    parser_natural.set_defaults(func=natural.run)
 
     issue = subparsers.add_parser('issue', help='Create GitHub issue')
     issue.add_argument('repo', help='Repo name')
@@ -26,7 +33,7 @@ def main():
     pr.add_argument('--base', required=True, help='Base branch (default: main)')
     pr.add_argument('--ai', action='store_true', help='Use AI to generate PR title/description')
 
-    args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
 
     if args.command == 'clone':
         clone_repo(args.url)
@@ -38,5 +45,14 @@ def main():
         ai_commit(args.repo)
     elif args.command == 'pr':
         create_pull_request(args.repo, args.branch, args.base, use_ai=args.ai)
+    elif len(sys.argv) > 1:
+        # Forward unknown commands to git
+        git_args = sys.argv[1:]
+        try:
+            result = subprocess.run(['git'] + git_args, check=False)
+            sys.exit(result.returncode)
+        except FileNotFoundError:
+            print("Git is not installed or not found in PATH.")
+            sys.exit(1)
     else:
         parser.print_help()

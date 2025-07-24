@@ -3,6 +3,8 @@ setup.py
 ai_git/__init__.py
 ai_git/cli.py
 ai_git/config.py
+ai_git/commands/__init__.py
+ai_git/commands/natural.py
 ai_git/core/__init__.py
 ai_git/core/git_ops.py
 ai_git/utils/__init__.py

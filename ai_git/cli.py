@@ -3,6 +3,7 @@ import sys
 import subprocess
 from ai_git.core.git_ops import clone_repo, analyze_repo, ai_commit
 from ai_git.utils.github_api import create_issue, create_pull_request
+from ai_git.commands import natural
 
 def main():
     parser = argparse.ArgumentParser(description="AI Git Assistant CLI")
@@ -13,6 +14,10 @@ def main():
 
     analyze = subparsers.add_parser('analyze', help='Analyze a repo')
     analyze.add_argument('path', help='Local repo path')
+
+    parser_natural = subparsers.add_parser("natural", help="Run a natural language git command")
+    parser_natural.add_argument("prompt", nargs=argparse.REMAINDER)
+    parser_natural.set_defaults(func=natural.run)
 
     issue = subparsers.add_parser('issue', help='Create GitHub issue')
     issue.add_argument('repo', help='Repo name')
